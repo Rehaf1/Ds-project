@@ -101,5 +101,19 @@ public class LinkedList<T>{
 	        }
 	        System.out.println("");
 	    }
+
+	 public int size() {
+        return size;
+    }
+
+    public T get(int index) {
+        Node < T > temp = head;
+        for (int i = 0; i < index; i++) {
+            temp = temp.next;
+        }
+        return temp.data;
+    }
+}
 	}
+
 	 
