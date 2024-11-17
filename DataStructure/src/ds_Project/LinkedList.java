@@ -32,33 +32,20 @@ public class LinkedList<T>{
 		 current.data= e; 
 	 }
 	 
-	 public void insert(T e) { 
+	 public void insert(T element) { 
 		 Node<T> temp ;
 		 
 		 if(head == null)
-			 head=current=new Node<T>(e) ; 
+			 head = current = new Node<T>(element) ; 
+		 
 		 else {
 			
-		 temp = current.next; 
-		 current.next = new Node<T>(e) ;
-		 current = current.next;
-		 current.next = temp ; 
+		 temp = new Node<T>(element);
+		 current.next = temp; 
+	     current = current.next;
 		 } 
 		 }
-	 public void insert(T e, LinkedList<T> list) { 
-		 Node<T> temp ;
-		 
-		 
-		 if(head == null)
-			 head=current=new Node<T>(e , list) ; 
-		 else {
-			
-		 temp = current.next; 
-		 current.next = new Node<T>(e, list) ;
-		 current = current.next;
-		 current.next = temp ; 
-		 } 
-		 }
+	 
 	 
 	 
 	 public void remove() {
@@ -79,41 +66,87 @@ public class LinkedList<T>{
 		 }
 	 }
 	 
-	 
-	 
-	 
-	 
-	 /// this is to make sure it works 
-	 public void print() {
-	        Node current = head;
-	        while (current != null) {
-	            System.out.print(current.data + ": ");
-	            current.insideList.printInner();  // Print inner list
-	            current = current.next;
-	        }
-	    }
-
-	 public void printInner() {
-	       current =  head;
-	        while (current != null) {
-	            System.out.print(current.data + " ");
-	            current = current.next;
-	        }
-	        System.out.println("");
-	    }
-
 	 public int size() {
-        return size;
-    }
+		 int count = 0 ; 
+		 Node current = head;
+	        while (current != null) {
+	        	count++; 
+	        	current = current.next; 
+	        }
+	        return count; 
+	 }
+	 
+	 
+	 
+	 
+	 public void print() {
+		    Node<T> current = head;
+		    while (current != null) {
+		        System.out.println(current.data); 
+		        current = current.next;
+		    }
+		}
 
-    public T get(int index) {
-        Node < T > temp = head;
-        for (int i = 0; i < index; i++) {
-            temp = temp.next;
-        }
-        return temp.data;
-    }
-}
+	 public void printInner(LinkedList<T> l) {
+		 if (!l.isEmpty())
+               l.findFirst(); 
+		      while(!l.isLast()) {
+		    	  System.out.print(l.retrive() + "->"); 
+		    	  l.findNext();    
+		 
+		      		}
+		      System.out.print(l.retrive() + "->\n"); 
+	 }	      
+		     
+
+	public boolean  search(T data) {
+		int lengeth = size();
+		Node<T>  temp= new Node<T>(data); 
+		if(head == null)
+			 return false; 
+		 else { 
+			 current = head ; 
+		       while (!(current == null)) { 
+		    	   if (current.data.equals(data))
+		    		   return true ; 
+		    	   current = current.next ; 
+		       }
+		
+	}
+		return false ; 
+	} 
+	
+	public T searchAndRetrieve(T data) {
+	    Node<T> current = head;
+	     while (current != null) {
+	        if (current.data.equals(data)) {
+	            return current.data; 
+	        }
+	        current = current.next;
+	    }
+	    return null; // Return null if not found
 	}
 
+	public String toString() {
+	    StringBuilder sb = new StringBuilder();
+	    while (current != null) {
+	        sb.append(current.data); 
+	        if (current.next != null) {
+	            sb.append(" -> "); 
+	        }
+	        current = current.next;
+	    }
+	    return sb.toString();
+	}
+
+	
+
+
+
+
+} 
+
+
+
+	
 	 
